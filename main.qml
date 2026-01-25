@@ -1,38 +1,50 @@
-import QtQuick
-import QtQuick.Window
-import QtQuick.Controls
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import org.kde.layershell 1.0 as LayerShell
 
 Window {
-    id: panel
-    width: 400
-    height: 40
+    id: panelWindow
     visible: true
-    color: "gray"
+    width: 200
+    height: 40
 
-    Row {
+    LayerShell.Window.scope: "dock"
+    LayerShell.Window.anchors: LayerShell.Window.AnchorBottom
+    LayerShell.Window.layer: LayerShell.Window.LayerBottom
+    LayerShell.Window.exclusionZone: height
+
+    Rectangle {
         anchors.fill: parent
-        spacing: 5
+        color: "#222222"
 
-        Repeater {
-            model: taskbar
+        // Taskbar
+        Row {
+            id: taskbarRow
+            anchors.fill: parent
+            anchors.margins: 4
+            spacing: 4
 
-            delegate: Rectangle {
-                width: 80
-                height: parent.height
-                color: toplevel.activated ? "blue" : "gray"
-                border.color: "white"
-                radius: 4
+            Repeater {
+                model: taskbar
+                delegate: Rectangle {
+                    width: 36
+                    height: 36
+                    radius: 4
+                    color: toplevel.activated ? "#ffaa00" : "#555555"
 
-                Text {
-                    anchors.centerIn: parent
-                    text: toplevel.title
-                    color: "white"
-                    font.pixelSize: 14
-                }
+                    Text {
+                        anchors.centerIn: parent
+                        text: toplevel.title
+                        font.pixelSize: 10
+                        color: "white"
+                    }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: toplevel.activate()
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            toplevel.activate()
+                        }
+                    }
                 }
             }
         }

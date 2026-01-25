@@ -1,3 +1,4 @@
+#include <LayerShellQt/shell.h>
 #include <QGuiApplication>
 #include <QTimer>
 #include <QQmlApplicationEngine>
@@ -7,6 +8,8 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
+
+    LayerShellQt::Shell::useLayerShell();
 
     Taskbar taskbar;
     ForeignToplevelManager manager(&taskbar);
