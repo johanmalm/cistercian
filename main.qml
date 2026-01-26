@@ -5,17 +5,19 @@ import org.kde.layershell 1.0 as LayerShell
 Window {
     id: panelWindow
     visible: true
+    color: "transparent"
     width: 200
     height: 40
 
     LayerShell.Window.scope: "dock"
     LayerShell.Window.anchors: LayerShell.Window.AnchorBottom
-    LayerShell.Window.layer: LayerShell.Window.LayerBottom
+    LayerShell.Window.layer: LayerShell.Window.LayerTop
     LayerShell.Window.exclusionZone: height
 
     Rectangle {
         anchors.fill: parent
-        color: "#222222"
+        radius: 6
+        color: "#80222222"
 
         // Taskbar
         Row {
@@ -27,8 +29,8 @@ Window {
             Repeater {
                 model: taskbar
                 delegate: Rectangle {
-                    width: 36
-                    height: 36
+                    width: 32
+                    height: 32
                     radius: 4
                     color: toplevel.activated ? "#ffaa00" : "#555555"
 
