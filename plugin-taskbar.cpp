@@ -96,6 +96,7 @@ ForeignToplevelHandle::ForeignToplevelHandle(struct ::zwlr_foreign_toplevel_hand
       QtWayland::zwlr_foreign_toplevel_handle_v1(handle),
       m_toplevel(new Toplevel(this))
 {
+    m_handle = handle;
     init(handle);
     qDebug() << "ForeignToplevelHandle constructor";
     // Optional: hook signals from m_handle to update m_toplevel->activated
@@ -108,15 +109,17 @@ ForeignToplevelHandle::~ForeignToplevelHandle()
 
 void ForeignToplevelHandle::activate()
 {
-    qDebug() << "activate() - before";
     if (!m_handle) {
+        qDebug() << "activate() called by no m_handle";
         return;
     }
-    qDebug() << "activate() - after";
     auto waylandApp = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>();
     wl_seat *seat = waylandApp->seat();
-    QtWayland::zwlr_foreign_toplevel_handle_v1::activate(seat);
-    // zwlr_foreign_toplevel_handle_v1_activate(m_handle, seat);
+    if (!seat) {
+        qDebug() << "activate() called but wl_seat is null";
+        return;
+    }
+    zwlr_foreign_toplevel_handle_v1_activate(m_handle, seat);
 }
 
 void ForeignToplevelHandle::zwlr_foreign_toplevel_handle_v1_title(const QString &title)

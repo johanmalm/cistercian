@@ -81,7 +81,7 @@ protected:
     void zwlr_foreign_toplevel_handle_v1_closed();
 
 private:
-    zwlr_foreign_toplevel_handle_v1 *m_handle = nullptr;
+    struct ::zwlr_foreign_toplevel_handle_v1 *m_handle = nullptr;
     Toplevel *m_toplevel = nullptr;
 
     // Getters
