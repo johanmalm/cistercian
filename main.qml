@@ -1,12 +1,13 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Layouts 1.15
 import org.kde.layershell 1.0 as LayerShell
 
 Window {
     id: panelWindow
     visible: true
     color: "transparent"
-    width: 200
+    width: Screen.width
     height: 40
 
     LayerShell.Window.scope: "dock"
@@ -20,7 +21,8 @@ Window {
         color: "#80222222"
 
         // Taskbar
-        Row {
+        //   - RowLayout allows Layout.* stuff to be used
+        RowLayout {
             id: taskbarRow
             anchors.fill: parent
             anchors.margins: 4
@@ -28,7 +30,15 @@ Window {
 
             Repeater {
                 model: taskbar
+
                 delegate: Rectangle {
+                    Layout.fillHeight: true
+
+                    Layout.preferredWidth: 140
+                    Layout.minimumWidth: 48
+                    Layout.maximumWidth: taskbarRow.width / Math.max(1, taskbar.count)
+                    Layout.fillWidth: true
+
                     width: 32
                     height: 32
                     radius: 4
