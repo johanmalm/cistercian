@@ -32,20 +32,23 @@ Window {
                 model: taskbar
 
                 delegate: Rectangle {
+                    id: task
                     Layout.fillHeight: true
-
-                    Layout.preferredWidth: 140
-                    Layout.minimumWidth: 48
-                    Layout.maximumWidth: taskbarRow.width / Math.max(1, taskbar.count)
                     Layout.fillWidth: true
 
-                    width: 32
-                    height: 32
+                    Layout.minimumWidth: 48
+                    Layout.maximumWidth: 140
+
                     radius: 4
                     color: toplevel.activated ? "#ffaa00" : "#555555"
 
                     Text {
-                        anchors.centerIn: parent
+                        anchors.fill: parent
+                        anchors.margins: 6
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHLeft
+                        elide: Text.ElideRight
+                        wrapMode: Text.NoWrap
                         text: toplevel.title
                         font.pixelSize: 10
                         color: "white"
@@ -58,6 +61,10 @@ Window {
                         }
                     }
                 }
+            }
+            // Exapnsion-spacer to make pack all tasks from left
+            Item {
+                Layout.fillWidth: true
             }
         }
     }
