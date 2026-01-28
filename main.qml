@@ -20,6 +20,8 @@ Window {
         anchors.margins: 4
         radius: 6
         color: "#80222222"
+        border.width: 1
+        border.color: "#A0222222"
 
         // Taskbar
         //   - RowLayout allows Layout.* stuff to be used
@@ -41,7 +43,10 @@ Window {
                     Layout.maximumWidth: 140
 
                     radius: 4
-                    color: toplevel.activated ? "#ffaa00" : "#555555"
+                    color: "#20000000"
+
+                    border.width: 1
+                    border.color: toplevel.activated ? "#888888" : "#00000000"
 
                     Text {
                         anchors.fill: parent
@@ -51,7 +56,7 @@ Window {
                         elide: Text.ElideRight
                         wrapMode: Text.NoWrap
                         text: toplevel.title
-                        font.pixelSize: 10
+                        font.pixelSize: 14
                         color: "white"
                     }
 
