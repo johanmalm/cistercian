@@ -8,7 +8,7 @@ Window {
     visible: true
     color: "transparent"
     width: Screen.width
-    height: 40
+    height: 48
 
     LayerShell.Window.scope: "dock"
     LayerShell.Window.anchors: LayerShell.Window.AnchorBottom
@@ -17,6 +17,7 @@ Window {
 
     Rectangle {
         anchors.fill: parent
+        anchors.margins: 4
         radius: 6
         color: "#80222222"
 
