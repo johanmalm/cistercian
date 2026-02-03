@@ -46,7 +46,7 @@ Window {
                     color: "#20000000"
 
                     border.width: 1
-                    border.color: toplevel.activated ? "#888888" : "#00000000"
+                    border.color: toplevel.activated ? "#FF888888" : "#00000000"
 
                     Text {
                         anchors.fill: parent
