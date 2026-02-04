@@ -23,14 +23,16 @@ Window {
         border.width: 1
         border.color: "#A0222222"
 
-        // Taskbar
-        //   - RowLayout allows Layout.* stuff to be used
+        // The RowLayout contains the plugins
+        // On a technical note, the RowLayout allows Layout.* stuff to be used
         RowLayout {
-            id: taskbarRow
+            id: panelRow
             anchors.fill: parent
             anchors.margins: 4
             spacing: 4
 
+            // Taskbar Plugin
+            // TODO: put this in a separate file like plugin-taskbar.qml
             Repeater {
                 model: taskbar
 
@@ -68,11 +70,33 @@ Window {
                     }
                 }
             }
-            // Exapnsion-spacer to make pack all tasks from left
+
+            // Expansion-spacer to pack all tasks to the left
             Item {
                 Layout.fillWidth: true
             }
+
+            // Load plugins
+            Repeater {
+                id: pluginRepeater
+                model: plugins
+
+                delegate: Loader {
+                    Layout.fillHeight: true
+                    source: pluginSource
+                    onLoaded: {
+                        if (item) {
+                            item.parent = parent
+                        }
+                    }
+                }
+            }
+
         }
     }
-}
 
+    ListModel {
+        id: plugins
+        ListElement { pluginSource: "plugin-clock.qml" }
+    }
+}
