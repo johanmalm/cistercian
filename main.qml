@@ -30,6 +30,7 @@ Window {
             anchors.fill: parent
             anchors.margins: 4
             spacing: 4
+            Layout.alignment: Qt.AlignVCenter
 
             // Taskbar Plugin
             // TODO: put this in a separate file like plugin-taskbar.qml
@@ -53,8 +54,10 @@ Window {
                     Text {
                         anchors.fill: parent
                         anchors.margins: 6
+                        height: 20
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHLeft
+                        anchors.verticalCenter: parent.verticalCenter
                         elide: Text.ElideRight
                         wrapMode: Text.NoWrap
                         text: toplevel.title

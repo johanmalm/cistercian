@@ -11,11 +11,12 @@ Rectangle {
     Text {
         id: timeDisplay
         anchors.centerIn: parent
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHLeft
         font.pixelSize: 16
         color: "white"
         text: Qt.formatTime(new Date(), "hh:mm")
 
-        // Update the time every 60 seconds
         Timer {
             interval: 60000
             running: true
