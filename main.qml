@@ -50,16 +50,32 @@ Window {
                     border.width: 1
                     border.color: toplevel.activated ? "#FF888888" : "#00000000"
 
-                    Text {
+                    // Task Layout
+                    RowLayout {
                         anchors.fill: parent
-                        anchors.margins: 6
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHLeft
-                        elide: Text.ElideRight
-                        wrapMode: Text.NoWrap
-                        text: toplevel.title
-                        font.pixelSize: 14
-                        color: "white"
+                        anchors.margins: 4
+                        spacing: 6
+
+                        // Icon
+                        Image {
+                            Layout.preferredWidth: 24
+                            Layout.preferredHeight: 24
+                            Layout.alignment: Qt.AlignVCenter
+                            source: toplevel.appId ? "image://icon/" + toplevel.appId + "/24" : "image://icon/application-x-executable/24"
+                            smooth: true
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignVCenter
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHLeft
+                            elide: Text.ElideRight
+                            wrapMode: Text.NoWrap
+                            text: toplevel.title
+                            font.pixelSize: 14
+                            color: "white"
+                        }
                     }
 
                     MouseArea {

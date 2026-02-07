@@ -12,12 +12,14 @@ class Toplevel : public QObject
     // Q_PROPERTY(QString title MEMBER m_title NOTIFY titleChanged)
     Q_PROPERTY(QString title READ title NOTIFY titleChanged)
     Q_PROPERTY(bool activated READ activated NOTIFY activatedChanged)
+    Q_PROPERTY(QString appId READ appId NOTIFY appIdChanged)
 
 public:
     explicit Toplevel(QObject *parent = nullptr);
 
     void setTitle(const QString &title);
     void setActivated(bool activated);
+    void setAppId(const QString &appId);
 
     // Call this to activate the window
     Q_INVOKABLE void activate();
@@ -26,16 +28,19 @@ public:
 signals:
     void activatedChanged();
     void titleChanged();
+    void appIdChanged();
 
 private:
     QString m_title;
     bool m_activated;
+    QString m_appId;
     std::function<void()> m_activateCallback;
 
     // Getters
 public:
     QString title() const { return m_title; }
     bool activated() const { return m_activated; }
+    QString appId() const { return m_appId; }
 };
 
 class Taskbar : public QAbstractListModel
@@ -76,6 +81,7 @@ public:
 
 protected:
     void zwlr_foreign_toplevel_handle_v1_title(const QString &title);
+    void zwlr_foreign_toplevel_handle_v1_app_id(const QString &app_id);
     void zwlr_foreign_toplevel_handle_v1_state(wl_array *state);
     void zwlr_foreign_toplevel_handle_v1_done();
     void zwlr_foreign_toplevel_handle_v1_closed();
