@@ -50,6 +50,16 @@ Window {
                     border.width: 1
                     border.color: toplevel.activated ? "#FF888888" : "#00000000"
 
+                    // Icon
+                    Image {
+                        Layout.preferredWidth: 24
+                        Layout.preferredHeight: 24
+                        Layout.alignment: Qt.AlignVCenter
+                        source: toplevel.icon ? "image://icon/" + toplevel.icon + "/24"
+                                               : "image://icon/application-x-executable/24"
+                        smooth: true
+                    }
+
                     Text {
                         anchors.fill: parent
                         anchors.margins: 6
