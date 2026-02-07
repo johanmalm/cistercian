@@ -21,6 +21,15 @@ void Toplevel::setActivated(bool activated)
     emit activatedChanged();
 }
 
+void Toplevel::setAppId(const QString &appId)
+{
+    if (m_appId == appId) {
+        return;
+    }
+    m_appId = appId;
+    emit appIdChanged();
+}
+
 void Toplevel::activate()
 {
     if (m_activateCallback) {
@@ -125,6 +134,11 @@ void ForeignToplevelHandle::activate()
 void ForeignToplevelHandle::zwlr_foreign_toplevel_handle_v1_title(const QString &title)
 {
     m_toplevel->setTitle(title);
+}
+
+void ForeignToplevelHandle::zwlr_foreign_toplevel_handle_v1_app_id(const QString &app_id)
+{
+    m_toplevel->setAppId(app_id);
 }
 
 void ForeignToplevelHandle::zwlr_foreign_toplevel_handle_v1_state(wl_array *state)
