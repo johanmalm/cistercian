@@ -5,8 +5,11 @@ import QtQuick.Layouts 1.15
 Rectangle {
     id: clock
     width: 100
-    height: 40
-    color: "transparent"
+    Layout.fillHeight: true
+    color: "#20000000"
+    //border.width: 1
+    //border.color: "#FF888888"
+    radius: 4
 
     Text {
         id: timeDisplay
