@@ -22,7 +22,6 @@ endif()
 add_executable(panel
     main.cpp
     plugin-taskbar.cpp
-    iconprovider.cpp
     xdgimageprovider.cpp
     ${QT_RESOURCES}
 )

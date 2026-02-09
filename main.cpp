@@ -19,11 +19,8 @@ int main(int argc, char **argv)
     QQmlApplicationEngine engine;
 
     // Register the image provider for icons
-    engine.addImageProvider("icon", new XdgImageProvider());
-
-    // Expose icon provider to QML
-    IconProvider iconProvider;
-    engine.rootContext()->setContextProperty("iconProvider", &iconProvider);
+    XdgImageProvider XdgImageProvider;
+    engine.addImageProvider("icon", &XdgImageProvider);
 
     // Expose taskbar model to QML
     engine.rootContext()->setContextProperty("taskbar", &taskbar);
