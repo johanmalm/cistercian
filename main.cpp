@@ -1,9 +1,7 @@
 #include <LayerShellQt/shell.h>
 #include <QGuiApplication>
-//#include <QTimer>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "iconprovider.h"
 #include "xdgimageprovider.h"
 #include "plugin-taskbar.h"
 
