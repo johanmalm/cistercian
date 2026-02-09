@@ -61,7 +61,7 @@ Window {
                             Layout.preferredWidth: 24
                             Layout.preferredHeight: 24
                             Layout.alignment: Qt.AlignVCenter
-                            source: toplevel.appId ? "image://icon/" + toplevel.appId + "/24" : "image://icon/application-x-executable/24"
+                            source: "image://icon/" + toplevel.appId + "/24"
                             smooth: true
                         }
 
