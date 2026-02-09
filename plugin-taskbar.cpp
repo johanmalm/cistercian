@@ -107,7 +107,6 @@ ForeignToplevelHandle::ForeignToplevelHandle(struct ::zwlr_foreign_toplevel_hand
 {
     m_handle = handle;
     init(handle);
-    qDebug() << "ForeignToplevelHandle constructor";
     // Optional: hook signals from m_handle to update m_toplevel->activated
 }
 
@@ -188,5 +187,5 @@ void ForeignToplevelManager::zwlr_foreign_toplevel_manager_v1_toplevel(
 
 void ForeignToplevelManager::onActiveChanged()
 {
-    qDebug() << "foreign-toplevel active:" << isActive();
+    // no-op
 }
