@@ -4,10 +4,7 @@ set(QT_NO_PRIVATE_MODULE_WARNING ON)
 find_package(Qt6 REQUIRED COMPONENTS Gui GuiPrivate Qml Quick WaylandClient)
 find_package(LayerShellQt REQUIRED)
 find_package(Wayland REQUIRED Client)
-
-#find_package(qt6xdg REQUIRED)
-include_directories(/usr/include/qt6xdg)
-find_library(Qt6Xdg_LIBRARY NAMES Qt6Xdg qt6xdg PATHS /usr/lib)
+find_package(Qt6Xdg REQUIRED)
 
 set(WLR_FOREIGN_TOPLEVEL_XML ${CMAKE_CURRENT_SOURCE_DIR}/wlr-foreign-toplevel-management-unstable-v1.xml)
 qt_standard_project_setup()
@@ -34,8 +31,7 @@ target_link_libraries(panel PRIVATE
     Qt6::Qml
     Qt6::Quick
     Qt6::WaylandClient
-    #qt6xdg
-    ${Qt6Xdg_LIBRARY}
+    Qt6Xdg
     LayerShellQtInterface
     Wayland::Client
 )
