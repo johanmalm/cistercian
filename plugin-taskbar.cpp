@@ -106,7 +106,6 @@ ForeignToplevelHandle::ForeignToplevelHandle(struct ::zwlr_foreign_toplevel_hand
       m_toplevel(new Toplevel(this))
 {
     m_handle = handle;
-    init(handle);
     // Optional: hook signals from m_handle to update m_toplevel->activated
 }
 
