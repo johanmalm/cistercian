@@ -1,5 +1,7 @@
 #include "plugin-taskbar.h"
 #include <QGuiApplication>
+#include <QIcon>
+#include <XdgIcon>
 
 Toplevel::Toplevel(QObject *parent) : QObject(parent), m_activated(false) { }
 
@@ -188,3 +190,34 @@ void ForeignToplevelManager::onActiveChanged()
 {
     // no-op
 }
+
+ImageProvider::ImageProvider()
+    : QQuickImageProvider(QQuickImageProvider::Pixmap) {
+}
+
+QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) {
+    // id format: "iconName/size" or just "iconName"
+    QStringList parts = id.split('/');
+    QString iconName = parts.value(0);
+    int iconSize = parts.value(1, "48").toInt();
+
+    if (requestedSize.isValid()) {
+        iconSize = qMax(requestedSize.width(), requestedSize.height());
+    }
+
+    /* Use LXQt's libqtxdg */
+    QIcon icon = XdgIcon::fromTheme(iconName);
+
+    if (icon.isNull()) {
+        icon = XdgIcon::fromTheme("application-x-executable");
+    }
+
+    QPixmap pixmap = icon.pixmap(iconSize, iconSize);
+
+    if (size) {
+        *size = pixmap.size();
+    }
+
+    return pixmap;
+}
+

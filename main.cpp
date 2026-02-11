@@ -2,7 +2,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "xdgimageprovider.h"
 #include "plugin-taskbar.h"
 
 int main(int argc, char **argv)
@@ -17,8 +16,8 @@ int main(int argc, char **argv)
     QQmlApplicationEngine engine;
 
     // Register the image provider for icons
-    XdgImageProvider XdgImageProvider;
-    engine.addImageProvider("icon", &XdgImageProvider);
+    ImageProvider ImageProvider;
+    engine.addImageProvider("icon", &ImageProvider);
 
     // Expose taskbar model to QML
     engine.rootContext()->setContextProperty("taskbar", &taskbar);

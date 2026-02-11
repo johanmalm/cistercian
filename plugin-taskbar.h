@@ -1,7 +1,9 @@
 #pragma once
 #include <QAbstractListModel>
 #include <QObject>
+#include <QPixmap>
 #include <QWaylandClientExtension>
+#include <QQuickImageProvider>
 #include <functional>
 #include "qwayland-wlr-foreign-toplevel-management-unstable-v1.h"
 
@@ -112,4 +114,11 @@ private slots:
 
 private:
     Taskbar *m_taskbar;
+};
+
+// This enables the QML to request a pixmap via Image --> source
+class ImageProvider : public QQuickImageProvider {
+public:
+    ImageProvider();
+    QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) override;
 };
