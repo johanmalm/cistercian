@@ -1,15 +1,15 @@
 import QtQuick 2.15
-import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
 import org.kde.layershell 1.0 as LayerShell
 
 Window {
     id: panelWindow
+
     visible: true
     color: "transparent"
     width: Screen.width
     height: 48
-
     LayerShell.Window.scope: "dock"
     LayerShell.Window.anchors: LayerShell.Window.AnchorBottom
     LayerShell.Window.layer: LayerShell.Window.LayerTop
@@ -27,6 +27,7 @@ Window {
         // On a technical note, the RowLayout allows Layout.* stuff to be used
         RowLayout {
             id: panelRow
+
             anchors.fill: parent
             anchors.margins: 4
             spacing: 4
@@ -38,15 +39,13 @@ Window {
 
                 delegate: Rectangle {
                     id: task
+
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-
                     Layout.minimumWidth: 48
                     Layout.maximumWidth: 140
-
                     radius: 4
                     color: "#20000000"
-
                     border.width: 1
                     border.color: toplevel.activated ? "#FF888888" : "#00000000"
 
@@ -76,15 +75,18 @@ Window {
                             font.pixelSize: 14
                             color: "white"
                         }
+
                     }
 
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            toplevel.activate()
+                            toplevel.activate();
                         }
                     }
+
                 }
+
             }
 
             // Expansion-spacer to pack all tasks to the left
@@ -95,24 +97,32 @@ Window {
             // Load plugins
             Repeater {
                 id: pluginRepeater
+
                 model: plugins
 
                 delegate: Loader {
                     Layout.fillHeight: true
                     source: pluginSource
                     onLoaded: {
-                        if (item) {
-                            item.parent = parent
-                        }
+                        if (item)
+                            item.parent = parent;
+
                     }
                 }
+
             }
 
         }
+
     }
 
     ListModel {
         id: plugins
-        ListElement { pluginSource: "plugin-clock.qml" }
+
+        ListElement {
+            pluginSource: "plugin-clock.qml"
+        }
+
     }
+
 }

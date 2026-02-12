@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.15
 
 Rectangle {
     id: clock
+
     width: 100
     Layout.fillHeight: true
     color: "#20000000"
@@ -13,6 +14,7 @@ Rectangle {
 
     Text {
         id: timeDisplay
+
         anchors.centerIn: parent
         font.pixelSize: 16
         color: "white"
@@ -24,8 +26,10 @@ Rectangle {
             running: true
             repeat: true
             onTriggered: {
-                timeDisplay.text = Qt.formatTime(new Date(), "hh:mm")
+                timeDisplay.text = Qt.formatTime(new Date(), "hh:mm");
             }
         }
+
     }
+
 }
