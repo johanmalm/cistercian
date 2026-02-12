@@ -117,7 +117,8 @@ private:
 };
 
 // This enables the QML to request a pixmap via Image --> source
-class ImageProvider : public QQuickImageProvider {
+class ImageProvider : public QQuickImageProvider
+{
 public:
     ImageProvider();
     QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) override;

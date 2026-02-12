@@ -191,11 +191,10 @@ void ForeignToplevelManager::onActiveChanged()
     // no-op
 }
 
-ImageProvider::ImageProvider()
-    : QQuickImageProvider(QQuickImageProvider::Pixmap) {
-}
+ImageProvider::ImageProvider() : QQuickImageProvider(QQuickImageProvider::Pixmap) { }
 
-QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) {
+QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
+{
     // id format: "iconName/size" or just "iconName"
     QStringList parts = id.split('/');
     QString iconName = parts.value(0);
@@ -220,4 +219,3 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
 
     return pixmap;
 }
-
